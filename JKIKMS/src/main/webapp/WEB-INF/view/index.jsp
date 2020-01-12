@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <%@ include file="/WEB-INF/view/common/common.jsp" %>
-
 <script src="/static/js/index.js"></script>
 
 </head>
