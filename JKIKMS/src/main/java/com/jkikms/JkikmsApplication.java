@@ -9,5 +9,4 @@ public class JkikmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JkikmsApplication.class, args);
 	}
-
 }
