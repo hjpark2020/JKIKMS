@@ -12,8 +12,7 @@
 
 </head>
 <body>
-Hellow jsp 중구ㄴㄴ
 
-testtestest!!!!
+Hellow jsp 
 </body>
 </html>
