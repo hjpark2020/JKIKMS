@@ -12,6 +12,6 @@
 
 </head>
 <body>
-Hellow jsp
+Hellow jsp 중구ㄴㄴ
 </body>
 </html>
