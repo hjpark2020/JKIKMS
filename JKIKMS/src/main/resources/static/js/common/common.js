@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	alert("common")
+	//alert("common")
 })
