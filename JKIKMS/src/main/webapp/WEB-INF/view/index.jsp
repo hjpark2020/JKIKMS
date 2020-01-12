@@ -12,13 +12,8 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-
-Hellow jsp 
-=======
 
 Hellow jsp 
 
->>>>>>> branch 'master' of https://github.com/hjpark2020/JKIKMS.git
 </body>
 </html>

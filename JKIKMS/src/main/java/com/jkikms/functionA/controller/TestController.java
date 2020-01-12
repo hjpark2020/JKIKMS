@@ -14,6 +14,13 @@ public class TestController {
 	@RequestMapping("/")
 	public String index() {
 		
+		// 세션 체크
+		// 로고
+		// 상단메뉴
+		// 메인화면 구성
+		// footer
+
+				
 		return "index";
 	}
 	
