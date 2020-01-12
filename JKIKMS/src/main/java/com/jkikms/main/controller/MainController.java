@@ -24,19 +24,11 @@ public class MainController {
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, Model md) {
 		
-		System.out.println();
-		Map<String, Object> map = mainService.mainView((String) request.getSession().getAttribute("userId"));
-	  
-		md.addAttribute("rMap", map);
-		for (String key : map.keySet()) { 
-			System.out.println(key);
-			System.out.println(map.get(key));
-			System.out.println("============");
-		}
-		 
+		md.addAttribute("rMap", mainService.mainView((String) request.getSession().getAttribute("userId")));
 		
-		//return "index";
-		return "test";
+		
+		return "index";
+		//return "test";
 	}
 	
 	@RequestMapping("/functionA")

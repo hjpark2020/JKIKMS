@@ -23,7 +23,7 @@ System.out.println(request.getAttribute("rMap"));
 <body>
 
 <%-- <%=test %> --%>
-
+${rMap.loginChk}
 Hellow jsp 
 
 </body>
