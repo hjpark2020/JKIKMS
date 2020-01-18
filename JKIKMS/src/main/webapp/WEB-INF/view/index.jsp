@@ -13,7 +13,7 @@
 	<meta charset="UTF-8">
 	<title>JKIKMS</title>
 	<!-- 부트스트랩 기본 css -->
-  	<link href="${pageContext.request.contextPath}/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
   	<!-- 부트스트랩 홈 스타일 -->
   	<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet">
 	<%@ include file="/WEB-INF/view/common/common.jsp" %>
@@ -219,8 +219,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/component/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/component/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
