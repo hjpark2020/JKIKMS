@@ -61,7 +61,7 @@
 
       <div class="col-lg-3">
 
-        <h1 class="my-4">존나엿먹어</h1>
+        <h1 class="my-4">Context list</h1>
         <div class="list-group">
           <a href="#" class="list-group-item">Category 1</a>
           <a href="#" class="list-group-item">Category 2</a>
@@ -73,7 +73,7 @@
 
       <div class="col-lg-9">
 
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" style = "overflow:hidden; height:400px">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -81,13 +81,13 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+              <img class="d-block img-fluid" src="${pageContext.request.contextPath}/static/tempfile/1.PNG" alt="First slide" >
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" src="${pageContext.request.contextPath}/static/tempfile/2.PNG" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+              <img class="d-block img-fluid" src="${pageContext.request.contextPath}/static/tempfile/3.PNG" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -99,21 +99,28 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 mb-4">
+<div class="row">
+		  <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item One</a>
+                  <a href="#">롤전적</a>
                 </h4>
                 <h5>blank</h5>
-                <p class="card-text">엿이나드세요</p>
+                <p class="card-text">롤전적 디스크립션</p>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">위밋플레이스</a>
+                </h4>
+                <h5>blank</h5>
+                <p class="card-text">위밋플레이스 디스크립션</p>
               </div>
             </div>
           </div>
@@ -123,13 +130,10 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Two</a>
+                  <a href="#">영화 순위</a>
                 </h4>
-                <h5>엿먹어</h5>
-                <p class="card-text">존나게 드세요.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <h5>blank</h5>
+                <p class="card-text">영화 디스크립션</p>
               </div>
             </div>
           </div>
@@ -139,13 +143,10 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Three</a>
+                  <a href="#">공용게시판</a>
                 </h4>
-                <h5>엿먹어</h5>
-                <p class="card-text">아씨발 모르겠다</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <h5>blank</h5>
+                <p class="card-text">공용게시판 디스크립션</p>
               </div>
             </div>
           </div>
@@ -155,13 +156,10 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Four</a>
+                  <a href="#">노래</a>
                 </h4>
                 <h5>엿먹어</h5>
-                <p class="card-text">천천히 수정하자!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <p class="card-text">노래 디스크립션</p>
               </div>
             </div>
           </div>
@@ -171,29 +169,23 @@
               <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Five</a>
+                  <a href="#">SMTM</a>
                 </h4>
                 <h5>엿먹어</h5>
-                <p class="card-text">펭하!!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <p class="card-text">SMTM 디스크립션</p>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <!-- <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a> -->
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Six</a>
+                  <a href="#">사진첩</a>
                 </h4>
                 <h5>엿먹어</h5>
-                <p class="card-text">먼치드렁크펇!!</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <p class="card-text">사진첩 디스크립션</p>
               </div>
             </div>
           </div>
