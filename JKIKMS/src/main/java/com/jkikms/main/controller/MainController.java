@@ -23,17 +23,84 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, Model md) {
-		
 		md.addAttribute("rMap", mainService.mainView((String) request.getSession().getAttribute("userId")));
 		
-		
 		return "index";
-		//return "test";
 	}
 	
-	@RequestMapping("/functionA")
-	public String functionA() {
+	
+	@RequestMapping("/wemeet")
+	public String wemeet(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			md.addAttribute("rMap", mainService.wemeetView((String) request.getSession().getAttribute("userId")));			
+		} else {
+			returnUrl = "login";
+		}
 		
-		return "/functionA/functionA";
+
+		return returnUrl;
+	}
+	
+	@RequestMapping("/smtm")
+	public String smtm(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			md.addAttribute("rMap", mainService.smtmView((String) request.getSession().getAttribute("userId")));			
+		} else {
+			returnUrl = "login";
+		}
+		
+		return returnUrl;
+	}
+	
+	@RequestMapping("/publicbbs")
+	public String publicbbs(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			md.addAttribute("rMap", mainService.publicbbsView((String) request.getSession().getAttribute("userId")));			
+		} else {
+			returnUrl = "login";
+		}
+		
+		return returnUrl;
+	}
+	
+	@RequestMapping("/privatebbs")
+	public String privatebbs(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			md.addAttribute("rMap", mainService.privatebbsView((String) request.getSession().getAttribute("userId")));			
+		} else {
+			returnUrl = "login";
+		}
+		
+		return returnUrl;
+	}
+	
+	@RequestMapping("/admin")
+	public String admin(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			md.addAttribute("rMap", mainService.adminView((String) request.getSession().getAttribute("userId")));			
+		} else {
+			returnUrl = "login";
+		}
+		
+		
+		return returnUrl;
+	}
+	
+	
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		if(request.getSession().getAttribute("userId") != null) {
+			returnUrl = "index";
+		} else {
+			returnUrl = "login";
+		}
+		
+		return returnUrl;
 	}
 }

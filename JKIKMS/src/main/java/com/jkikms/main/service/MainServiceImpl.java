@@ -66,4 +66,34 @@ public class MainServiceImpl implements MainService {
 		return rm;
 	}
 
+	@Override
+	public Map<String, Object> wemeetView(String userId) {
+		Map<String, Object> rm = new HashMap<>();
+		return rm;
+	}
+
+	@Override
+	public Map<String, Object> smtmView(String userId) {
+		Map<String, Object> rm = new HashMap<>();
+		return rm;
+	}
+
+	@Override
+	public Map<String, Object> publicbbsView(String userId) {
+		Map<String, Object> rm = new HashMap<>();
+		return rm;
+	}
+
+	@Override
+	public Map<String, Object> privatebbsView(String userId) {
+		Map<String, Object> rm = new HashMap<>();
+		return rm;
+	}
+
+	@Override
+	public Map<String, Object> adminView(String userId) {
+		Map<String, Object> rm = new HashMap<>();
+		return rm;
+	}
+
 }
