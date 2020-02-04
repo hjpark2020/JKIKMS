@@ -23,6 +23,7 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, Model md) {
+		System.out.println(request.getSession().getAttribute("userId"));
 		md.addAttribute("rMap", mainService.mainView((String) request.getSession().getAttribute("userId")));
 		
 		return "index";

@@ -63,12 +63,12 @@ public class LoginController {
 			if((int) kakaoUserInfo.get("resultCode") != 0) {
 				HttpSession session = request.getSession();
 				session.setAttribute("kakaoAccessToken", kakaoAccessToken);
-				session.setAttribute("userId", kakaoUserInfo.get("id"));
+				session.setAttribute("userId", kakaoUserInfo.get("kakaoId"));
 
 				System.out.println("==========================");
 				System.out.println("kakaoAccessToken : " +kakaoAccessToken);
 				
-				
+				System.out.println(session.getAttribute("userId"));
 				for (String key : kakaoUserInfo.keySet()) {
 					System.out.println(key + " : " + kakaoUserInfo.get(key));
 				}
