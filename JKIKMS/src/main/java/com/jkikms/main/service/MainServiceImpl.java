@@ -1,21 +1,35 @@
 package com.jkikms.main.service;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.jkikms.Mapper.LoginMapper;
+import com.jkikms.vo.UserVO;
+
 @Service("com.jkikms.main.service.MainService")
 public class MainServiceImpl implements MainService {
+	
+	@Resource(name="com.jkikms.Mapper.LoginMapper")
+	LoginMapper loginMapper;
 
 	@Override
 	public Map<String, Object> mainView(String userId) {
+		
+		UserVO userVo = new UserVO();
+		List<UserVO> userVoList = loginMapper.selectUserInfo(userVo);
+		
+		for (int i = 0; i < userVoList.size(); i++) {
+			System.out.println(userVoList.get(i).getUserId());
+		}
 		
 		Map<String, Object> rm = new HashMap<>();
 		

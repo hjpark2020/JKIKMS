@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.jkikms.Mapper.LoginMapper">
+	<resultMap type="com.jkikms.vo.UserVO" id="userResultMap">
+		<result column="USER_ID"		property="userId"		jdbcType="VARCHAR"/>
+		<result column="USER_NIC"		property="userNic"		jdbcType="VARCHAR"/>
+		<result column="USER_NAME"		property="userName"		jdbcType="VARCHAR"/>
+		<result column="USER_PWD"		property="userPwd"		jdbcType="VARCHAR"/>
+		<result column="USER_LOL_NIC"	property="userLolNic"	jdbcType="VARCHAR"/>
+		<result column="USER_MAIL"		property="userMail"		jdbcType="VARCHAR"/>
+		<result column="USER_GUBUN"		property="userGubun"	jdbcType="VARCHAR"/>
+		<result column="USER_CERTIFI"	property="userCertifi"	jdbcType="VARCHAR"/>
+		<result column="LEVEL"			property="level"		jdbcType="INTEGER"/>
+		<result column="USER_USE_YN"	property="userUseYn"	jdbcType="VARCHAR"/>
+		<result column="CRT_DT"			property="crtDt"		jdbcType="VARCHAR"/>
+		<result column="CRT_TM"			property="crtTm"		jdbcType="VARCHAR"/>
+		<result column="CRT_ID"			property="crtId"		jdbcType="VARCHAR"/>
+		<result column="MOD_DT"			property="modDt"		jdbcType="VARCHAR"/>
+		<result column="MOD_TM"			property="modTm"		jdbcType="VARCHAR"/>
+		<result column="MOD_ID"			property="modId"		jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="selectUserInfo" parameterType="com.jkikms.vo.UserVO" resultMap="userResultMap">
+		SELECT 
+			*
+		FROM USER_INFO
+	</select>
+	
+</mapper>
