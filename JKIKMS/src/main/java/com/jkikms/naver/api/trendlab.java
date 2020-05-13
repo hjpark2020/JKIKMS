@@ -1,13 +1,10 @@
 package com.jkikms.naver.api;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 public class trendlab {
-
     public static void main(String[] args) {
         String clientId = "mdA2BzvfKs0_ker4TV1U";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "Hjd2mCeGXi";//애플리케이션 클라이언트 시크릿값";
