@@ -24,7 +24,7 @@ public class LOLcontroller {
 	            String ID_LOL = "munchdrunkpurpp"; 
 	            String API_KEY_LOL = "RGAPI-9cf7d48a-87a7-4127-a7be-3a6fa36c91d6"; 
 	            String urlStr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ ID_LOL +"?api_key="+API_KEY_LOL;
-	            URL url = new URL(urlStr); // 위 urlStr을 이용해서 URL 객체를 만들어줍니다.
+	            URL url = new URL(urlStr); // 위 urlStr을 이용해서 URL 객체를 만들어줍니다. 
 	            BufferedReader bf;
 	            String line = "";
 	            String result="";
