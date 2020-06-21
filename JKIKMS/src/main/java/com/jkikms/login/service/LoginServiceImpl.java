@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,8 +21,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.jkikms.Mapper.LoginMapper;
+import com.jkikms.vo.UserVO;
+
 @Service("com.jkikms.login.service.LoginService")
 public class LoginServiceImpl implements LoginService {
+	
+	@Resource(name="com.jkikms.Mapper.LoginMapper")
+	LoginMapper loginMapper;
 
 	@Override
 	public Map<String, Object> loginCheck(Map<String, Object> param) {
@@ -41,13 +48,19 @@ public class LoginServiceImpl implements LoginService {
 				errMsg = "loginErr002";
 			} else {
 				//DB 셀렉 필요
-				Integer result = 1; // result = 1 아이디 있음, result = 0 아이디 없음.
-				if(result == 1) {
+				UserVO userVo = new UserVO();
+				userVo.setUserId(userId);
+				userVo.setUserPwd(userPw);
+				
+				userVo = loginMapper.loginChk(userVo);
+
+				if( userVo != null ) {
 					loginResult = "Y";
 				} else {
 					loginResult = "N";
 					errMsg = "loginErr003";
 				}
+				
 			}
 		}
 		

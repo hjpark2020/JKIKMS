@@ -10,4 +10,7 @@ import com.jkikms.vo.UserVO;
 public interface LoginMapper {
 	
 	public List<UserVO> selectUserInfo(UserVO userVo);
+	
+	public UserVO loginChk(UserVO userVo);
+					
 }
