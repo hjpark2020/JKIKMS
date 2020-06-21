@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -124,4 +125,81 @@ public class LoginController {
 		}
 		return "kakaoLogout";
 	}
+	
+	// 카카오 메시지 테스트
+	@RequestMapping("/kakaoSend")
+	public void kakaoSend(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		String accessToken = (String) session.getAttribute("kakaoAccessToken");
+		System.out.println(accessToken);
+
+		//String reqURL = "https://kapi.kakao.com/v2/api/talk/memo/default/send";
+		String reqURL = "https://kapi.kakao.com/v2/api/talk/memo/send";
+        String result = "";
+        int responseCode = 0;
+        
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            
+            //    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+            
+            
+            JSONObject jObj = new JSONObject();
+            jObj.put("object_type", "text");
+            jObj.put("text", "TEST!");
+            
+            JSONObject jObj2 = new JSONObject();
+            jObj2.put("web_url", "http://localhost");
+            jObj.put("link", jObj2);            
+            
+            
+            //    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            StringBuilder sb = new StringBuilder();
+            System.out.println(jObj.toString());
+            //sb.append("template_object=" + jObj.toString());
+            sb.append("template_id=28743");
+            bw.write(sb.toString());
+            System.out.println(bw.toString());
+            bw.flush();
+            
+            //    결과 코드가 200이라면 성공
+            responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+            
+            if(responseCode == 200) {
+        		//요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String line = "";
+                //String result = "";
+                
+                while ((line = br.readLine()) != null) {
+                    result += line;
+                }
+                System.out.println("response body : " + result);
+
+
+    			br.close();
+    			bw.close();
+            } else {
+            	
+            }
+ 
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            accessToken = "";
+        } 
+	}
+	
+	@RequestMapping("/addKakao")
+	void addKakao(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws IOException {
+		System.out.println(code);
+	}
+	
 }
