@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -31,7 +32,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto mr-5">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home
               <span class="sr-only">(current)</span>
@@ -50,6 +51,16 @@
             <a class="nav-link" href="#">개인스페이스</a>
           </li>
         </ul>
+   
+        <c:choose>
+		    <c:when test="${empty userInfo}">
+				<a href="/login">로그인</a>
+		    </c:when>
+		    <c:otherwise>
+		    	<a class="userName" href=""><c:out value="${userInfo.userName}" /> </a>
+				<a class="ml-2" href="/logout">로그아웃</a>
+		    </c:otherwise>
+		</c:choose>
       </div>
     </div>
   </nav>

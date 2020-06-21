@@ -24,12 +24,6 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public Map<String, Object> mainView(String userId) {
 		
-		UserVO userVo = new UserVO();
-		List<UserVO> userVoList = loginMapper.selectUserInfo(userVo);
-		
-		for (int i = 0; i < userVoList.size(); i++) {
-			System.out.println(userVoList.get(i).getUserId());
-		}
 		
 		Map<String, Object> rm = new HashMap<>();
 		

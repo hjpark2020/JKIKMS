@@ -19,6 +19,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +33,20 @@ public class LoginController {
 	LoginService loginService;
 
 	@RequestMapping("/loginCheck")
-	public Map<String, Object> login(HttpServletRequest request, @RequestParam Map<String, Object> param) {
+	void login(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> param, Model md) throws IOException {
 		// 로그인체크시 아이디/패스워드 파라미터는 암복호화 필요, 일단 암복호화없이 진행
-		return loginService.loginCheck(param);
+		
+		Map<String, Object> result = loginService.loginCheck(param);
+		if ("Y".equals( result.get("result")) ) {
+			HttpSession session = request.getSession();
+			session.setAttribute("userInfo", result.get("userInfo"));
+			md.addAttribute("userInfo", result.get("userInfo"));
+			response.sendRedirect("/");
+		} else {
+			md.addAttribute("result", "N");
+			response.sendRedirect("/login?result=N");
+		}
+
 	}
 
 	@RequestMapping("/loginSuccess")

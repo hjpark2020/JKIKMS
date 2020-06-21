@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jkikms.main.service.MainService;
+import com.jkikms.vo.UserVO;
 
 @Controller
 public class MainController {
@@ -23,7 +24,10 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String index(HttpServletRequest request, Model md) {
-		System.out.println(request.getSession().getAttribute("userId"));
+		UserVO userVo = (UserVO) request.getSession().getAttribute("userInfo");
+		if (userVo != null) {
+			System.out.println(userVo.getUserId());
+		}
 		md.addAttribute("rMap", mainService.mainView((String) request.getSession().getAttribute("userId")));
 		
 		return "index";
@@ -96,12 +100,22 @@ public class MainController {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request, Model md) {
 		String returnUrl = "";
-		if(request.getSession().getAttribute("userId") != null) {
-			returnUrl = "index";
+		UserVO userInfo = (UserVO) request.getSession().getAttribute("userInfo");
+		if(userInfo != null) {
+			returnUrl = "login/redirectIndex";
 		} else {
-			returnUrl = "login";
+			md.addAttribute("result", request.getParameter("result"));
+			returnUrl = "login/login";
 		}
 		
 		return returnUrl;
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request, Model md) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("userInfo");
+		return "/login/redirectIndex";
+	}
+
 }

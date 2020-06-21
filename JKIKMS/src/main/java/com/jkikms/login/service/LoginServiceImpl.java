@@ -34,6 +34,7 @@ public class LoginServiceImpl implements LoginService {
 	public Map<String, Object> loginCheck(Map<String, Object> param) {
 		Map<String, Object> rm = new HashMap<>();
 
+		UserVO userVo = new UserVO();
 		String userId = (String) param.get("userId");
 		String userPw = (String) param.get("userPw");
 		
@@ -41,14 +42,14 @@ public class LoginServiceImpl implements LoginService {
 		String errMsg = "";
 		if(userId == null || "".equals(userId)) {
 			loginResult = "N";
-			errMsg = "loginErr001";
+			errMsg = "emptyId";
 		} else {
 			if(userPw == null || "".equals(userPw)) {
 				loginResult = "N";
-				errMsg = "loginErr002";
+				errMsg = "emptyPw";
 			} else {
 				//DB 셀렉 필요
-				UserVO userVo = new UserVO();
+				
 				userVo.setUserId(userId);
 				userVo.setUserPwd(userPw);
 				
@@ -58,7 +59,7 @@ public class LoginServiceImpl implements LoginService {
 					loginResult = "Y";
 				} else {
 					loginResult = "N";
-					errMsg = "loginErr003";
+					errMsg = "nonUser";
 				}
 				
 			}
@@ -66,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		rm.put("result", loginResult);
 		rm.put("errMsg", errMsg);
-		rm.put("userId", userId);
+		rm.put("userInfo", userVo);
 			
 		
 		return rm;

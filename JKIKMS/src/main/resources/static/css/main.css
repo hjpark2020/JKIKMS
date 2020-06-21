@@ -6,3 +6,12 @@
 body {
   padding-top: 56px;
 }
+
+p {
+	font-size: 12px;
+}
+
+a.userName {
+	color : #ffffff;
+}
+
