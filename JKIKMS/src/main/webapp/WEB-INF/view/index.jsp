@@ -13,6 +13,7 @@
 	<meta name="author" content="">
 	<meta charset="UTF-8">
 	<title>JKIKMS</title>
+	<!--css커스터마이즈 -->
 	<!-- 부트스트랩 기본 css -->
   	<link href="${pageContext.request.contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
   	<!-- 부트스트랩 홈 스타일 -->
@@ -22,11 +23,9 @@
 </head>
 
 <body>
-
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="#">JKIKMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,23 +66,21 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
-
+  <div class="container-fluid">
     <div class="row">
-
-      <div class="col-lg-3">
-
-        <h1 class="my-4">Context list</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
-
-      </div>
+      	<div class="panel panel-info col-lg-2 bg-dark">
+      		<div class="panel-primary">
+      		<div class="panel-heading">
+      		 	<h2 class="panel-title">Login info</h2>
+        	</div>
+        	</div>
+        	<div class="card card-body">
+        		로그인 정보
+        	</div>
+    	</div>
       <!-- /.col-lg-3 -->
 
-      <div class="col-lg-9">
+      <div class="col-lg-8">
 
         <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel" style = "overflow:hidden; height:400px">
           <ol class="carousel-indicators">
