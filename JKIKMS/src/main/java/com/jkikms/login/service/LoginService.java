@@ -5,7 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
+
+
 
 public interface LoginService {
 
@@ -15,4 +17,7 @@ public interface LoginService {
 	
 	Map<String, Object>	getKakaoUserInfo(String accesseToken);
 	
+	JSONObject idCheck(String userId);
+	
+	JSONObject registerUser(Map<String, Object> param);
 }

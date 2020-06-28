@@ -54,7 +54,8 @@
    
         <c:choose>
 		    <c:when test="${empty userInfo}">
-				<a href="/login">로그인</a>
+		    	<a href="/register">회원가입</a>
+				<a class="ml-2" href="/login">로그인</a>
 		    </c:when>
 		    <c:otherwise>
 		    	<a class="userName" href=""><c:out value="${userInfo.userName}" /> </a>

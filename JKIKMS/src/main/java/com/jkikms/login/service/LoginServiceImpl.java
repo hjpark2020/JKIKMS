@@ -21,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.jki.kms.util.SHA256Util;
 import com.jkikms.Mapper.LoginMapper;
 import com.jkikms.vo.UserVO;
 
@@ -51,12 +52,21 @@ public class LoginServiceImpl implements LoginService {
 				//DB 셀렉 필요
 				
 				userVo.setUserId(userId);
-				userVo.setUserPwd(userPw);
+				//userVo.setUserPwd(userPw);
 				
 				userVo = loginMapper.loginChk(userVo);
 
 				if( userVo != null ) {
-					loginResult = "Y";
+					
+					String encryptPw = SHA256Util.getEncrypt(userPw, userVo.getSalt());
+					if(userVo.getUserPwd().equals(encryptPw)) { 
+						loginResult = "Y";
+					} else {
+						loginResult = "N";
+						errMsg = "failPw";
+					}
+					
+					
 				} else {
 					loginResult = "N";
 					errMsg = "nonUser";
@@ -193,5 +203,75 @@ public class LoginServiceImpl implements LoginService {
 		}
 		
 		return resultMap;
+	}
+
+	@Override
+	public JSONObject idCheck(String userId) {
+		int result = 0;
+		String success = "N";
+		try {
+			result = loginMapper.idCheck(userId);
+			success = "Y";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		JSONObject jRes = new JSONObject();
+		jRes.put("success", success);
+		jRes.put("result", result);
+		
+		return jRes;
+	}
+
+	@Override
+	public JSONObject registerUser(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		JSONObject jRes = new JSONObject();
+		
+		String errMsg = "";
+		if("".equals( param.get("userId") ) || param.get("userId") == null) {
+			errMsg = "emptyId";
+		} else if("".equals( param.get("userPw") ) || param.get("userPw") == null || "".equals( param.get("userPwChk") ) || param.get("userPwChk") == null) {
+			errMsg = "emptyPw";
+		} else if ( !param.get("userPw").equals(param.get("userPwChk")) ) {
+			errMsg = "failPwChk";
+		} else if (  ((String) param.get("userPw")).length() < 6) {
+			errMsg = "failPwLength";
+		} else if( "".equals( param.get("userName") ) || param.get("userName") == null) {
+			errMsg = "emptyName";
+		}
+		
+		UserVO userVo = new UserVO();
+		userVo.setUserId((String) param.get("userId"));
+		userVo.setUserPwd((String) param.get("userPw"));
+		userVo.setUserName((String) param.get("userName"));
+		userVo.setUserNic((String) param.get("userName"));
+		userVo.setUserLolNic((String) param.get("userLolNic"));
+		userVo.setUserMail((String) param.get("userEmail"));
+		userVo.setUserGubun("nomarl");
+		userVo.setUserCertifi("Y");
+		userVo.setLevel(2);
+		userVo.setUserUseYn("Y");
+		
+		
+		/////////////비번 암호화////////////////
+		String salt = SHA256Util.generateSalt();
+		userVo.setSalt(salt);
+		userVo.setUserPwd(SHA256Util.getEncrypt(userVo.getUserPwd(), salt));
+
+		
+		Integer result = 0; 
+		try {
+			result = loginMapper.registerUser(userVo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			errMsg = "exception";
+		}
+		
+		jRes.put("errMsg", errMsg);
+		jRes.put("result", result);
+		
+		return jRes;
 	}
 }

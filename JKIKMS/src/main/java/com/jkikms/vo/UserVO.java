@@ -18,6 +18,7 @@ public class UserVO {
 	private String modDt;
 	private String modTm;
 	private String modId;
+	private String salt;
 	
 	public String getUserId() {
 		return userId;
@@ -114,6 +115,12 @@ public class UserVO {
 	}
 	public void setModId(String modId) {
 		this.modId = modId;
+	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 }

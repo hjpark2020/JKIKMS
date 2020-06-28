@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <script type="text/javascript">
-	window.location.href = 'http://localhost';
+	window.location.href = '/';
 </script>
 </head>
 <body>

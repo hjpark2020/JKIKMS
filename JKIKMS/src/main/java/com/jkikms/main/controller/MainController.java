@@ -1,5 +1,6 @@
 package com.jkikms.main.controller;
 
+import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -7,12 +8,19 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.jkikms.main.service.MainService;
 import com.jkikms.vo.UserVO;
 
@@ -117,5 +125,34 @@ public class MainController {
 		session.removeAttribute("userInfo");
 		return "/login/redirectIndex";
 	}
-
+	
+	@RequestMapping("/register")
+	public String register(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		UserVO userInfo = (UserVO) request.getSession().getAttribute("userInfo");
+		if(userInfo != null) {
+			returnUrl = "login/redirectIndex";
+		} else {
+			returnUrl = "login/register";
+		}
+		
+		return returnUrl;
+	}
+	
+	@RequestMapping(value="/registerResult")
+	public String registerResult(HttpServletRequest request, Model md) {
+		JSONParser parser = new JSONParser();
+		JSONObject jRes = null;
+		try {
+			jRes = (JSONObject) parser.parse(request.getParameter("jRes"));
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		md.addAttribute("jRes", jRes);
+		return "login/registerResult";
+	}
+	
+	/*  */
 }

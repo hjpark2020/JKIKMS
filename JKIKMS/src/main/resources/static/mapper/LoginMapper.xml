@@ -22,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="MOD_DT"			property="modDt"		jdbcType="VARCHAR"/>
 		<result column="MOD_TM"			property="modTm"		jdbcType="VARCHAR"/>
 		<result column="MOD_ID"			property="modId"		jdbcType="VARCHAR"/>
+		<result column="SALT"			property="salt"			jdbcType="VARCHAR"/>
 	</resultMap>
 	
 	<select id="selectUserInfo" parameterType="com.jkikms.vo.UserVO" resultMap="userResultMap">
@@ -35,9 +36,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			*
 		FROM USER_INFO
 		WHERE USER_ID = #{userId}
-		AND USER_PWD = #{userPwd}
+		
 	</select>
 	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT 
+			COUNT(USER_ID)
+		FROM USER_INFO
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<insert id="registerUser" parameterType="com.jkikms.vo.UserVO">
+		INSERT INTO USER_INFO
+		VALUES (
+				#{userId}
+			,	#{userNic}
+			,	#{userName}
+			,	#{userPwd}
+			,	#{userLolNic}
+			,	#{userMail}
+			,	#{userGubun}
+			,	#{userCertifi}
+			,	#{level}
+			,	#{userUseYn}
+			,	DATE_FORMAT(NOW(), '%Y%m%d')
+			,	DATE_FORMAT(NOW(), '%H%i%s')
+			,	#{userId}
+			,	DATE_FORMAT(NOW(), '%Y%m%d')
+			,	DATE_FORMAT(NOW(), '%H%i%s')
+			,	#{userId}
+			,	#{salt}
+		)
+		
+	</insert>
 	
 	
 </mapper>

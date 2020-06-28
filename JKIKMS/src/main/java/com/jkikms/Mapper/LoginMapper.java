@@ -12,5 +12,9 @@ public interface LoginMapper {
 	public List<UserVO> selectUserInfo(UserVO userVo);
 	
 	public UserVO loginChk(UserVO userVo);
+	
+	public Integer idCheck(String userId);
+	
+	public Integer registerUser(UserVO userVo);
 					
 }

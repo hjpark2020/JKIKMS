@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,10 +23,13 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jkikms.login.service.LoginService;
+import com.jkikms.vo.UserVO;
 
 @RestController
 public class LoginController {
@@ -32,7 +37,7 @@ public class LoginController {
 	@Resource(name = "com.jkikms.login.service.LoginService")
 	LoginService loginService;
 
-	@RequestMapping("/loginCheck")
+	@RequestMapping(value="/loginCheck" , method=RequestMethod.POST)
 	void login(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> param, Model md) throws IOException {
 		// 로그인체크시 아이디/패스워드 파라미터는 암복호화 필요, 일단 암복호화없이 진행
 		
@@ -40,10 +45,8 @@ public class LoginController {
 		if ("Y".equals( result.get("result")) ) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", result.get("userInfo"));
-			md.addAttribute("userInfo", result.get("userInfo"));
 			response.sendRedirect("/");
 		} else {
-			md.addAttribute("result", "N");
 			response.sendRedirect("/login?result=N");
 		}
 
@@ -212,6 +215,34 @@ public class LoginController {
 	@RequestMapping("/addKakao")
 	void addKakao(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws IOException {
 		System.out.println(code);
+	}
+	
+	
+	@RequestMapping("/registerCheck")
+	public String register(HttpServletRequest request, Model md) {
+		String returnUrl = "";
+		UserVO userInfo = (UserVO) request.getSession().getAttribute("userInfo");
+		if(userInfo != null) {
+			returnUrl = "login/redirectIndex";
+		} else {
+			returnUrl = "login/register";
+		}
+		
+		return returnUrl;
+	}
+	
+	@RequestMapping(value="/idCheck" , method=RequestMethod.POST)
+	public JSONObject idCheck(HttpServletRequest request) {
+
+		return loginService.idCheck(request.getParameter("userId"));
+	}
+
+	@RequestMapping(value="/registerCheck" , method=RequestMethod.POST)
+	void registerCheck(HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirect, @RequestParam Map<String, Object> param, Model md) throws IOException {
+		JSONObject jRes = loginService.registerUser(param);
+		
+		
+		response.sendRedirect("/registerResult?jRes="+URLEncoder.encode(jRes.toString(), "UTF-8"));
 	}
 	
 }
