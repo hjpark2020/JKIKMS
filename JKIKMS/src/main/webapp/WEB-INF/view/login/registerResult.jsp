@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 		var result = '<c:out value="${jRes.result}"/>';
 		var errMsg = '<c:out value="${jRes.errMsg}"/>';
-		console.log(errMsg)
+		//console.log(errMsg)
 		
 		if(result == '1'){
 			alert("회원가입을 축하드립니다!\n로그인 페이지로 이동합니다.");

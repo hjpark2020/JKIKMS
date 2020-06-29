@@ -1,4 +1,4 @@
-package com.jki.kms.util;
+package com.jkikms.common.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

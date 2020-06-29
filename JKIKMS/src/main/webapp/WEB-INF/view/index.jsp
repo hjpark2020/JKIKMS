@@ -2,9 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	System.out.println(request.getAttribute("rMap"));
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,48 +20,7 @@
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">JKIKMS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto mr-5">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">위밋플레이스</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">SMTP</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">공용게시판</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">개인스페이스</a>
-          </li>
-        </ul>
-   
-        <c:choose>
-		    <c:when test="${empty userInfo}">
-		    	<a href="/register">회원가입</a>
-				<a class="ml-2" href="/login">로그인</a>
-		    </c:when>
-		    <c:otherwise>
-		    	<a class="userName" href=""><c:out value="${userInfo.userName}" /> </a>
-				<a class="ml-2" href="/logout">로그아웃</a>
-		    </c:otherwise>
-		</c:choose>
-      </div>
-    </div>
-  </nav>
-
+	<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
   <!-- Page Content -->
   <div class="container-fluid">
     <div class="row">

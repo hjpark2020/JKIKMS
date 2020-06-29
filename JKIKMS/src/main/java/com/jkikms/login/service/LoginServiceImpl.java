@@ -21,8 +21,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
-import com.jki.kms.util.SHA256Util;
 import com.jkikms.Mapper.LoginMapper;
+import com.jkikms.common.util.SHA256Util;
 import com.jkikms.vo.UserVO;
 
 @Service("com.jkikms.login.service.LoginService")

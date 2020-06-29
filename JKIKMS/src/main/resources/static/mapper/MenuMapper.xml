@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.jkikms.Mapper.MenuMapper">
+	<resultMap type="com.jkikms.vo.MenuVO" id="MenuResultMap">
+		<result column="MENU_KEY"			property="menuKey"		jdbcType="INTEGER"/>
+		<result column="MENU_NAME"			property="menuName"		jdbcType="VARCHAR"/>
+		<result column="MENU_URL"			property="menuUrl"		jdbcType="VARCHAR"/>
+		<result column="MENU_PATH"			property="menuPath"		jdbcType="VARCHAR"/>
+		<result column="MENU_USE_YN"		property="menuUseYn"		jdbcType="INTEGER"/>
+		<result column="MENU_PRIORITY"		property="menuPriority"		jdbcType="INTEGER"/>
+		<result column="MENU_DEPTH"			property="menuDepth"		jdbcType="INTEGER"/>
+		<result column="LEVEL"				property="level"		jdbcType="VARCHAR"/>
+		<result column="CRT_DT"				property="crtDt"		jdbcType="VARCHAR"/>
+		<result column="CRT_TM"				property="crtTm"		jdbcType="VARCHAR"/>
+		<result column="CRT_ID"				property="crtId"		jdbcType="VARCHAR"/>
+		<result column="MOD_DT"				property="modDt"		jdbcType="VARCHAR"/>
+		<result column="MOD_TM"				property="modTm"		jdbcType="VARCHAR"/>
+		<result column="MOD_ID"				property="modId"		jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="selectMenu" resultMap="MenuResultMap">
+		SELECT 
+			*
+		FROM MENU_INFO
+		ORDER BY MENU_PRIORITY
+	</select>
+
+</mapper>

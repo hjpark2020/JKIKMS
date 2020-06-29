@@ -45,7 +45,7 @@ public class LoginController {
 		if ("Y".equals( result.get("result")) ) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", result.get("userInfo"));
-			response.sendRedirect("/");
+			response.sendRedirect("/"+param.get("beforeMenu"));
 		} else {
 			response.sendRedirect("/login?result=N");
 		}

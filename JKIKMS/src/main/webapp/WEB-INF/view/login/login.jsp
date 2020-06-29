@@ -16,58 +16,19 @@
   	<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet">
 	<%@ include file="/WEB-INF/view/common/common.jsp" %>
 	<!-- <script src="/static/js/index.js"></script -->
+	
 </head>
 
 <body>
-
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">JKIKMS</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto mr-5">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">위밋플레이스</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">SMTP</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">공용게시판</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">개인스페이스</a>
-          </li>
-        </ul>
-        <c:choose>
-		    <c:when test="${empty userInfo}">
-		    	<a href="/register">회원가입</a>
-				<a class="ml-2" href="/login">로그인</a>
-		    </c:when>
-		    <c:otherwise>
-		    	<a class="userName" href=""><c:out value="${userInfo.userName}" /> </a>
-				<a class="ml-2" href="/logout">로그아웃</a>
-		    </c:otherwise>
-		</c:choose>
-      </div>
-    </div>
-  </nav>
-
+	<%@ include file="/WEB-INF/view/common/navbar.jsp" %>
   <!-- Page Content -->
   <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-4 col-sm-6 m-5 border pt-5 pb-3 pl-4 pr-4">
 			<div class="border-bottom text-center text-secondary pb-2"><h2>로그인<h2></h2></div>
 			<form class="form-horizontal pt-4 border-bottom" action="/loginCheck" method="POST">
+				<input type="hidden" id="beforeMenu" name="beforeMenu" value="${beforeMenu}">
+				
 	  			<div class="form-group">
 	    			<label for="inputEmail3" class="control-label">아이디</label>
 		    		<div class="">

@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.jkikms.Mapper.LoginMapper;
+import com.jkikms.Mapper.MenuMapper;
+import com.jkikms.vo.MenuVO;
+import com.jkikms.vo.StaticVO;
 import com.jkikms.vo.UserVO;
 
 @Service("com.jkikms.main.service.MainService")
@@ -20,6 +25,12 @@ public class MainServiceImpl implements MainService {
 	
 	@Resource(name="com.jkikms.Mapper.LoginMapper")
 	LoginMapper loginMapper;
+	
+	@Resource(name="com.jkikms.Mapper.MenuMapper")
+	MenuMapper menuMapper;
+
+	//@Autowired
+	//List<MenuVO> menuList;
 
 	@Override
 	public Map<String, Object> mainView(String userId) {
@@ -102,6 +113,23 @@ public class MainServiceImpl implements MainService {
 	public Map<String, Object> adminView(String userId) {
 		Map<String, Object> rm = new HashMap<>();
 		return rm;
+	}
+
+	@Override
+	public List<MenuVO> selectMenu() {
+		return menuMapper.selectMenu();
+	}
+	
+	@Override
+	public MenuVO nowMenu(String currentMenu) {
+		MenuVO menuVo = null;
+		for (int i = 0; i < StaticVO.getMenuList().size(); i++) {
+			if(currentMenu.equals(StaticVO.getMenuList().get(i).getMenuUrl())) {
+				menuVo = StaticVO.getMenuList().get(i);
+				break;
+			}
+		}
+		return menuVo;
 	}
 
 }
